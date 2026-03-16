@@ -1,0 +1,517 @@
+origin,destination,transfer_count,avg_success_delta
+Alabama,Colorado,5,0.03875000000000001
+Alabama,Florida State,5,0.060380000000000024
+Alabama,Georgia Tech,3,0.025400000000000002
+Alabama,Kentucky,3,-0.10943333333333334
+Alabama,Nebraska,3,0.0
+Alabama,Ohio State,3,0.22679999999999997
+Alabama,Oregon,3,0.13416666666666668
+Alabama,Syracuse,3,0.0425
+Alabama,TCU,5,-0.11750000000000001
+Alabama,Tennessee,3,0.17843333333333333
+Alabama,Texas,6,-0.19776666666666665
+Alabama,USC,3,0.07750000000000001
+App State,Gardner-Webb,5,-0.09666666666666668
+App State,Liberty,3,-0.1566
+Arizona,Arizona,3,-0.1441
+Arizona,Boise State,3,-0.04833333333333334
+Arizona,Massachusetts,6,-0.03858333333333334
+Arizona,Middle Tennessee,3,0.0
+Arizona,Texas,3,-0.12583333333333332
+Arizona,UNLV,4,-0.256875
+Arizona,USC,3,-0.6134000000000001
+Arizona,Washington,13,-0.08128461538461539
+Arizona State,Cincinnati,3,-0.18433333333333335
+Arizona State,Oklahoma,3,-0.14963333333333334
+Arizona State,SMU,3,0.35473333333333334
+Arizona State,Texas State,3,-0.006666666666666668
+Arizona State,UNLV,3,-0.2526
+Arizona State,Washington,3,-0.16396666666666668
+Arkansas,App State,5,0.00794000000000003
+Arkansas,Colorado,6,-0.21911666666666665
+Arkansas,Memphis,4,-0.2416666666666667
+Arkansas,Ole Miss,4,-0.347625
+Arkansas,Purdue,6,-0.09716666666666668
+Arkansas,SMU,4,-0.07666666666666666
+Arkansas,UCLA,3,-0.09749999999999999
+Arkansas,UNLV,6,0.54916
+Arkansas State,Utah State,3,0.04979999999999999
+Auburn,Auburn,4,0.08537499999999999
+Auburn,Colorado,3,-0.016666666666666666
+Auburn,Florida State,3,-0.1927
+Auburn,Kansas,3,-0.03833333333333334
+Auburn,Ole Miss,4,0.18586666666666674
+Auburn,Purdue,6,-0.03681666666666668
+Auburn,UCF,5,-0.017359999999999997
+Auburn,USC,3,-0.16136666666666669
+Austin Peay,UTEP,11,-0.11105454545454546
+BYU,Southern Utah,3,0.11230000000000002
+BYU,Utah State,6,0.005260000000000001
+BYU,Weber State,3,-0.03506666666666667
+Ball State,Butler,4,-0.031549999999999995
+Ball State,Illinois,3,-0.5759666666666666
+Baylor,Arkansas,3,-0.07750000000000001
+Baylor,Colorado State,3,-0.05400000000000001
+Baylor,South Florida,3,-0.07256666666666667
+Baylor,Stephen F. Austin,5,-0.01212
+Boise State,BYU,3,-0.008633333333333326
+Boise State,Portland State,3,0.0
+Buffalo,Buffalo,6,-0.03272
+Buffalo,Kansas,8,0.10388571428571428
+Butler,Ball State,3,-0.18020000000000003
+California,Arizona State,4,-0.036000000000000004
+California,Indiana,3,-0.5861333333333333
+California,Nevada,5,0.010800000000000016
+California,Oklahoma,3,-0.055566666666666674
+California,Oregon State,3,0.2873
+California,Texas State,3,-0.06120000000000001
+California,UCLA,6,-0.09350000000000003
+Campbell,New Mexico,4,-0.08700000000000001
+Central Michigan,Marshall,3,-0.1763
+Charlotte,Arkansas,5,-0.8473999999999999
+Charlotte,Bethune-Cookman,4,-0.0614
+Charlotte,Charlotte,4,-0.6206
+Charlotte,Gardner-Webb,4,-0.167
+Charlotte,Iowa Western C.C.,5,-0.49744
+Charlotte,Massachusetts,4,0.04290000000000001
+Charlotte,Mercer,4,0.16879999999999998
+Charlotte,Minnesota,4,-0.013399999999999856
+Charlotte,Rutgers,4,-0.4095
+Charlotte,South Florida,5,-0.19990000000000002
+Charlotte,UCF,8,-0.26535000000000003
+Charlotte,UConn,5,-0.09079999999999999
+Charlotte,UTEP,4,-0.22130000000000002
+Charlotte,Utah State,5,-0.42874
+Charlotte,Wake Forest,4,-0.5278
+Charlotte,West Virginia,5,-0.26661999999999997
+Charlotte,Western Kentucky,6,-0.5156999999999999
+Charlotte,Wyoming,4,-0.2072
+Cincinnati,Texas State,4,-0.003075000000000064
+Cincinnati,UCF,3,-0.34113333333333334
+Cincinnati,Wisconsin,5,0.18385
+Clemson,Georgia Tech,4,-0.10460000000000001
+Clemson,Minnesota,3,-0.0809
+Clemson,South Florida,3,-0.0005000000000000004
+Clemson,Virginia,3,0.06980000000000001
+Coastal Carolina,Georgia State,4,0.183175
+Coastal Carolina,Liberty,3,-0.34156666666666674
+Coastal Carolina,Mercer,3,0.3055666666666667
+Colorado,Arizona,3,-0.002933333333333348
+Colorado,Arizona State,3,0.08053333333333335
+Colorado,Arkansas State,3,-0.04833333333333332
+Colorado,Charlotte,5,0.9364000000000001
+Colorado,Florida Atlantic,3,0.0
+Colorado,Memphis,4,-0.25020000000000003
+Colorado,Oregon,3,-0.24416666666666673
+Colorado,Oregon State,4,-0.09889999999999999
+Colorado,Tulane,3,-0.13906666666666667
+Colorado,USC,3,-0.10406666666666664
+Colorado,UTSA,3,0.25526666666666664
+Colorado State,Colorado State,3,-0.21783333333333332
+Colorado State,West Virginia,4,-0.434375
+Dartmouth,Massachusetts,5,-0.016620000000000003
+Duke,East Carolina,3,-0.01730000000000001
+East Carolina,Austin Peay,4,-0.11410000000000001
+East Carolina,North Carolina A&T,4,0.015000000000000003
+East Tennessee State,Tulsa,4,-0.0446
+Eastern Michigan,Jackson State,3,-0.34290000000000004
+Eastern Michigan,Southern Miss,3,0.0
+Florida,Arkansas,3,0.008750000000000008
+Florida,Charlotte,3,-0.0888
+Florida,LSU,3,-0.28250000000000003
+Florida,Missouri,3,0.11333333333333334
+Florida,Nebraska,4,-0.0075000000000000015
+Florida,North Carolina,3,0.0
+Florida,Temple,3,0.11639999999999999
+Florida,Texas A&M,3,-0.42416666666666664
+Florida,UCF,4,-0.11582499999999998
+Florida Atlantic,Florida A&M,3,-0.20993333333333333
+Florida Atlantic,Jacksonville State,3,-0.2768666666666667
+Florida Atlantic,South Florida,5,-0.21406
+Florida Atlantic,UCF,3,-0.5329
+Florida International,Colorado State,3,-0.10026666666666667
+Florida International,Louisville,3,-0.55125
+Florida State,Colorado,6,-0.1979666666666667
+Florida State,Florida A&M,3,0.0
+Florida State,Florida Atlantic,6,-0.09794
+Florida State,Jackson State,3,0.004166666666666668
+Florida State,Marshall,5,0.108975
+Florida State,Maryland,3,0.07666666666666667
+Florida State,Memphis,4,-0.031875
+Florida State,Oklahoma,3,-0.14
+Florida State,South Carolina,3,-0.1416666666666667
+Florida State,Troy,3,0.012499999999999999
+Fresno State,Fresno State,3,-0.3081333333333333
+Furman,Coastal Carolina,3,-0.0857
+Gardner-Webb,UConn,3,-0.025000000000000005
+Georgia,Arkansas,3,0.19416666666666668
+Georgia,Georgia Tech,3,-0.20496666666666666
+Georgia,Jacksonville State,3,-0.015399999999999992
+Georgia,Mississippi State,3,-0.0373
+Georgia,Nebraska,4,-0.07359999999999998
+Georgia,Purdue,7,-0.07782857142857144
+Georgia,SMU,3,-0.010000000000000002
+Georgia,Syracuse,4,-0.26492499999999997
+Georgia,Texas A&M,3,-0.039999999999999994
+Georgia Southern,Louisville,3,-0.28470000000000006
+Georgia State,Alabama A&M,3,-0.013333333333333336
+Georgia State,Campbell,3,-0.030000000000000002
+Georgia Tech,Florida International,3,0.008033333333333335
+Georgia Tech,Georgia Southern,4,-0.025099999999999997
+Georgia Tech,Georgia State,3,-0.1721666666666667
+Georgia Tech,Massachusetts,3,0.1688666666666667
+Georgia Tech,North Carolina,3,-0.22835
+Georgia Tech,Ole Miss,3,-0.045833333333333316
+Georgia Tech,South Alabama,3,0.0
+Harvard,Duke,3,-0.2545
+Holy Cross,James Madison,6,-0.222475
+Houston,Colorado,4,-0.08625000000000001
+Houston,East Carolina,4,0.027575000000000002
+Houston,Louisville,3,0.0
+Houston,Texas State,3,0.2633333333333334
+Houston Christian,Western Kentucky,4,-0.524375
+Idaho,New Mexico,7,-0.21242857142857144
+Illinois,Louisiana Tech,3,-0.01666666666666667
+Illinois,San José State,3,0.03003333333333334
+Incarnate Word,Texas State,10,-0.0029571428571428388
+Indiana,Ball State,3,-0.0228
+Indiana,Chattanooga,3,0.0
+Indiana,Florida Atlantic,3,-0.2316666666666667
+Indiana,Memphis,5,-0.184
+Indiana,Miami (OH),6,0.2533
+Indiana,Michigan,3,-0.30720000000000003
+Indiana,Purdue,3,-0.1675
+Indiana,South Alabama,3,0.16666666666666666
+Indiana,UAB,3,0.16216666666666668
+Indiana,Western Kentucky,3,0.016433333333333338
+Iowa,Central Michigan,4,0.090625
+Iowa,Charlotte,4,0.2946
+Iowa,South Dakota,3,0.020000000000000004
+Iowa State,Arizona State,3,0.0
+Iowa State,Charlotte,3,-0.02783333333333332
+Jackson State,Colorado,9,0.12783333333333335
+Jacksonville State,Marshall,3,-0.11813333333333333
+Jacksonville State,West Virginia,8,-0.5242142857142857
+James Madison,Indiana,13,-0.21084615384615385
+Kansas,North Alabama,4,-0.011975000000000012
+Kansas,Northern Iowa,3,0.1144
+Kansas State,Austin Peay,3,-0.03490000000000001
+Kennesaw State,Memphis,3,0.0
+Kennesaw State,Oklahoma,3,-0.20073333333333335
+Kentucky,Colorado,4,0.032424999999999995
+Kentucky,UCF,3,0.08726666666666665
+LSU,Auburn,4,-0.05694999999999997
+LSU,Ole Miss,4,-0.36382500000000007
+LSU,TCU,3,0.014699999999999972
+LSU,UTSA,4,-0.021075
+Liberty,Colorado,3,-0.21713333333333332
+Louisiana,Florida,3,-0.030950000000000005
+Louisiana,Houston,4,-0.5236000000000001
+Louisiana Tech,Houston,3,-0.22583333333333333
+Louisville,App State,3,-0.3047000000000001
+Louisville,Cincinnati,6,-0.25251666666666667
+Louisville,Georgia State,3,0.15416666666666665
+Louisville,Georgia Tech,3,-0.13353333333333336
+Louisville,Miami,3,-0.265
+Louisville,Syracuse,3,0.0
+Louisville,UCLA,3,-0.17875000000000002
+Louisville,Virginia,3,0.28750000000000003
+Marshall,Akron,3,-0.003333333333333334
+Marshall,App State,3,0.0
+Marshall,East Carolina,3,0.036666666666666674
+Marshall,Florida Atlantic,3,-0.3962666666666667
+Marshall,Marshall,8,-0.11791666666666667
+Marshall,Southern Miss,19,-0.22894736842105265
+Marshall,Texas State,3,-0.14906666666666668
+Maryland,Auburn,4,-0.322175
+Maryland,East Carolina,3,-0.06666666666666667
+Maryland,NC State,3,-0.18276666666666666
+Massachusetts,Michigan,3,-0.24516666666666673
+Massachusetts,Rhode Island,3,-0.1526
+Memphis,Mississippi State,3,0.0
+Memphis,Sam Houston,4,0.1578
+Memphis,Southern Miss,3,0.2315666666666667
+Memphis,TCU,3,-0.43000000000000005
+Memphis,Tennessee State,3,-0.07706666666666667
+Miami,Georgia,3,-0.23006666666666667
+Miami,Louisville,4,-0.08134999999999999
+Miami,Missouri,3,-0.12503333333333333
+Miami,SMU,11,-0.07816000000000001
+Michigan,Charlotte,3,-0.02
+Michigan,Florida,3,-0.02
+Michigan,Massachusetts,3,0.0
+Michigan,Western Michigan,3,0.0
+Michigan State,Akron,3,0.2771666666666667
+Michigan State,Memphis,3,-0.07500000000000001
+Middle Tennessee,Charlotte,4,0.03629999999999989
+Middle Tennessee,Tennessee State,3,-0.22000000000000003
+Minnesota,Illinois State,3,0.39915
+Minnesota,Kansas,4,-0.0523
+Minnesota,Ohio,3,0.03776666666666667
+Minnesota,Rutgers,4,0.288975
+Minnesota,South Florida,4,-0.03772499999999995
+Mississippi State,Arkansas State,3,0.0
+Mississippi State,Georgia Tech,3,-0.0033000000000000004
+Mississippi State,Marshall,3,-0.008333333333333331
+Mississippi State,Ole Miss,3,-0.4126666666666667
+Mississippi State,South Alabama,8,0.11162000000000001
+Mississippi State,Southern Miss,15,0.020000000000000004
+Missouri,Arkansas,3,-0.17166666666666666
+Missouri,SMU,3,-0.19
+Montana,Nebraska,3,0.11346666666666667
+Montana State,California,3,0.0
+NC State,Marshall,3,-0.002733333333333329
+Nebraska,Florida Atlantic,3,-0.33380000000000004
+Nebraska,Kansas,3,0.056933333333333315
+Nebraska,Kansas State,4,-0.21812500000000004
+Nebraska,Kentucky,3,-0.19276666666666667
+Nebraska,South Dakota State,4,0.04744999999999999
+Nebraska,Western Kentucky,3,0.02666666666666666
+Nevada,Colorado State,8,-0.003185714285714288
+Nevada,Memphis,3,-0.5745666666666667
+Nevada,Sacramento State,3,-0.22406666666666666
+Nevada,San José State,3,-0.2248333333333333
+New Mexico,UL Monroe,7,-0.31086666666666674
+New Mexico,UTEP,3,-0.22666666666666668
+New Mexico,UTSA,3,-0.12999999999999998
+New Mexico,Utah State,5,-0.3785
+New Mexico State,Arizona State,3,0.05666666666666672
+New Mexico State,Syracuse,3,-0.06000000000000002
+New Mexico State,Utah State,3,-0.3408333333333333
+New Mexico State,Vanderbilt,5,0.08224
+New Mexico State,Washington State,3,-0.25500000000000006
+North Carolina,Charlotte,6,0.06966666666666665
+North Carolina,Coastal Carolina,3,0.5779500000000001
+North Carolina,East Carolina,8,0.0977625
+North Carolina,Georgia Southern,4,0.23666666666666666
+North Carolina,Indiana,3,0.016333333333333328
+North Carolina,Liberty,4,0.014766666666666671
+North Carolina,Ohio State,3,-0.22666666666666668
+North Carolina,West Virginia,3,-0.11946666666666667
+North Texas,Abilene Christian,7,-0.05005714285714286
+North Texas,North Texas,3,-0.7683333333333332
+North Texas,Sam Houston,3,-0.14373333333333335
+North Texas,UCLA,3,-0.07250000000000001
+Northern Illinois,Mississippi State,3,-0.3259
+Northwestern,Arizona,3,0.13976666666666668
+Notre Dame,California,4,-0.024499999999999994
+Notre Dame,Syracuse,3,0.115
+Notre Dame,UCLA,5,-0.121275
+Ohio,Charlotte,5,-0.35900000000000004
+Ohio State,Cincinnati,5,-0.016039999999999995
+Ohio State,Colorado,3,-0.014099999999999994
+Ohio State,Kentucky,4,0.03166666666666667
+Ohio State,LSU,3,-0.03166666666666667
+Ohio State,Texas,3,0.4288
+Oklahoma,Houston,3,-0.22960000000000003
+Oklahoma,Memphis,3,-0.07250000000000001
+Oklahoma,Missouri,3,0.04459999999999997
+Oklahoma,Oklahoma,4,0.013333333333333334
+Oklahoma,SMU,6,0.23570000000000008
+Oklahoma,South Carolina,4,0.05243333333333331
+Oklahoma,Texas State,5,-0.055299999999999995
+Oklahoma,UCF,3,-0.08666666666666667
+Oklahoma,USC,3,0.07339999999999998
+Oklahoma,Utah,3,-0.22480000000000003
+Oklahoma,Washington,3,-0.17
+Oklahoma State,Ole Miss,3,-0.5730000000000001
+Oklahoma State,Tulsa,5,0.09648
+Old Dominion,Indiana,3,-0.4892
+Old Dominion,Memphis,3,-0.7148
+Ole Miss,Arkansas State,4,-0.3749
+Ole Miss,Colorado,3,0.0
+Ole Miss,Houston,3,0.2575
+Ole Miss,Indiana,4,-0.181875
+Ole Miss,Ohio State,3,-0.03040000000000002
+Ole Miss,Ole Miss,5,-0.30618
+Ole Miss,Oregon,3,-0.2976333333333334
+Ole Miss,South Alabama,4,0.27285000000000004
+Ole Miss,Southern Miss,11,0.021772727272727277
+Oregon,Arizona State,3,-0.125
+Oregon,Baylor,3,0.07916666666666665
+Oregon,Miami,3,0.11393333333333333
+Oregon,Nevada,8,-0.040528571428571435
+Oregon,UCLA,6,0.08646000000000001
+Oregon,UNLV,3,0.05780000000000001
+Oregon State,Idaho,3,0.05000000000000001
+Oregon State,Michigan State,4,-0.0028750000000000303
+Penn State,Akron,3,0.11280000000000001
+Pennsylvania,Duke,3,0.0
+Pittsburgh,Akron,3,-0.028099999999999997
+Pittsburgh,South Carolina,3,-0.3466666666666667
+Pittsburgh,UNLV,3,-0.2962000000000001
+Purdue,Arizona State,5,-0.172
+Purdue,Ball State,5,-0.06970000000000001
+Purdue,California,3,-0.1895
+Purdue,Charlotte,4,-0.0025000000000000005
+Purdue,Florida Atlantic,3,0.007766666666666662
+Purdue,Louisville,3,-0.04970000000000001
+Purdue,Minnesota,3,-0.14020000000000002
+Purdue,South Alabama,3,-0.013333333333333336
+Purdue,Temple,3,0.0
+Purdue,Western Michigan,3,0.13749999999999998
+Richmond,James Madison,3,-0.35073333333333334
+Rutgers,Florida Atlantic,3,0.0
+Rutgers,Louisville,3,0.05000000000000001
+Rutgers,Massachusetts,7,0.03581428571428571
+Rutgers,Rhode Island,3,0.0
+SMU,Sam Houston,3,0.255
+SMU,Texas State,5,-0.07774
+Sam Houston,North Texas,7,-0.4059285714285714
+San Diego State,Arizona State,3,-0.5559000000000001
+San Diego State,Charlotte,4,0.0857
+San Diego State,Sacramento State,3,-0.04743333333333333
+San José State,Arizona,6,-0.40208000000000005
+San José State,Portland State,4,-0.24232499999999998
+San José State,USC,3,-0.1632
+South Carolina,App State,4,-0.010000000000000002
+South Carolina,Florida State,5,-0.25817500000000004
+South Carolina,Georgia Tech,3,0.08803333333333334
+South Carolina,Jackson State,3,-0.10500000000000002
+South Carolina,Syracuse,3,0.23313333333333333
+South Dakota State,Washington State,16,-0.059320000000000005
+South Florida,Arkansas,3,-0.19513333333333338
+South Florida,Colorado,3,-0.36673333333333336
+South Florida,Florida A&M,3,-0.010000000000000002
+Southern Miss,Arkansas State,3,-0.2160666666666667
+Southern Miss,Tulane,3,-0.30173333333333335
+Southern Utah,BYU,5,0.0
+Stanford,BYU,3,-0.31540000000000007
+Stanford,Indiana,3,-0.1541666666666667
+Stanford,Oklahoma,3,0.0
+Stanford,Utah,3,-0.7441666666666666
+Stephen F. Austin,Louisiana Tech,4,-0.034866666666666664
+Syracuse,Akron,3,-0.09016666666666667
+Syracuse,Florida International,3,-0.07519999999999998
+Syracuse,Kent State,3,-0.14573333333333335
+Syracuse,Texas State,3,-0.010000000000000002
+TCU,New Mexico,5,0.09880000000000001
+TCU,North Texas,6,-0.026099999999999995
+TCU,UTSA,3,0.03616666666666665
+Temple,Rutgers,3,0.29750000000000004
+Tennessee,Colorado,4,0.09749999999999999
+Tennessee,Indiana,3,0.0356
+Tennessee,Jacksonville State,3,0.19036666666666666
+Tennessee,Louisville,5,-0.39102000000000003
+Tennessee,Memphis,4,-0.22437500000000002
+Tennessee,Oklahoma,4,0.22883333333333333
+Tennessee,South Florida,4,0.09226666666666665
+Tennessee,Tennessee State,3,0.0
+Texas,Arizona State,4,-0.04972499999999999
+Texas,Mississippi State,3,0.13
+Texas,Nebraska,3,-0.5401666666666668
+Texas,Nevada,3,-0.10093333333333333
+Texas,SMU,7,0.0736
+Texas,TCU,3,0.21793333333333334
+Texas,USC,4,-0.2072
+Texas A&M,Alabama,3,0.0
+Texas A&M,Charlotte,5,0.15808
+Texas A&M,Georgia Tech,3,0.11069999999999998
+Texas A&M,Houston,3,-0.1574
+Texas A&M,LSU,3,-0.036666666666666674
+Texas A&M,Ole Miss,3,-0.30970000000000003
+Texas A&M,SMU,3,0.065
+Texas State,Abilene Christian,4,0.047625
+Texas State,Incarnate Word,3,-0.056666666666666664
+Texas State,UTEP,3,-0.042133333333333335
+Texas Tech,Abilene Christian,5,0.06616000000000001
+Texas Tech,Houston,6,-0.07748000000000001
+Texas Tech,Indiana,3,-0.2888
+Texas Tech,North Texas,6,-0.07318000000000001
+Troy,Tulane,6,0.10083333333333332
+Troy,Western Kentucky,4,-0.24833333333333338
+Tulane,Houston,4,0.251875
+Tulsa,Houston,4,-0.450275
+Tulsa,Marshall,3,-0.2031666666666667
+Tulsa,North Texas,3,-0.2898
+Tulsa,Oklahoma State,4,-0.43312500000000004
+UAB,Florida International,3,-0.1364
+UAB,UL Monroe,3,-0.016300000000000002
+UCF,Boston College,3,-0.06806666666666666
+UCF,East Tennessee State,4,-0.0125
+UCF,Florida State,5,-0.08099999999999999
+UCF,Georgia State,4,0.081675
+UCF,Middle Tennessee,3,0.0
+UCF,Ole Miss,3,-0.5398999999999999
+UCF,South Florida,3,0.0
+UCLA,Arizona,3,0.04833333333333333
+UCLA,Oklahoma State,3,-0.1125
+UCLA,San José State,3,-0.018533333333333336
+UCLA,USC,3,-0.33536666666666665
+UL Monroe,Jackson State,4,-0.21166666666666667
+UL Monroe,North Texas,9,-0.4436444444444445
+UL Monroe,Tulane,3,-0.4478333333333333
+UL Monroe,UL Monroe,7,-0.31018333333333337
+UNLV,Purdue,10,-0.10697777777777778
+UNLV,Sacramento State,4,-0.131275
+USC,Arizona State,3,0.5003
+USC,Fresno State,5,0.3275
+USC,Georgia,3,-0.31939999999999996
+USC,Hawai'i,3,0.0625
+USC,Houston,3,0.023266666666666668
+USC,Kentucky,3,-0.1075
+USC,Ole Miss,3,0.26339999999999997
+USC,Oregon,3,-0.06810000000000001
+USC,San José State,3,0.002500000000000021
+USC,Tennessee,3,0.07496666666666667
+USC,UCLA,3,-0.10083333333333333
+USC,Utah,4,-0.08226666666666665
+UTEP,Florida Atlantic,3,-0.12666666666666668
+UTEP,Prairie View A&M,3,-0.005000000000000001
+UTEP,Southern Miss,3,-0.015
+UTEP,Texas State,4,-0.34495000000000003
+Utah,Arizona,3,0.23010000000000005
+Utah,BYU,5,-0.20692000000000005
+Utah,California,4,0.03447499999999999
+Utah,Fresno State,3,0.018233333333333338
+Utah,Hawai'i,3,0.0
+Utah,San José State,3,0.0
+Utah,USC,3,0.20976666666666668
+Utah,Utah State,3,0.10163333333333335
+Utah State,BYU,6,-0.07168333333333334
+Utah State,Kansas,4,-0.15625
+Utah State,Oklahoma State,3,-0.19753333333333334
+Utah State,Southern Miss,3,-0.11793333333333335
+Utah State,Texas State,4,-0.009374999999999994
+Utah State,Washington State,3,-0.11499999999999998
+Vanderbilt,Florida A&M,3,0.27033333333333337
+Vanderbilt,Samford,3,-0.059166666666666666
+Virginia,Virginia,3,0.04833333333333334
+Virginia Tech,App State,3,-0.006666666666666668
+Virginia Tech,Cincinnati,3,-0.15583333333333335
+Virginia Tech,UCF,3,-0.16416666666666666
+Wake Forest,Indiana,3,-0.2585
+Wake Forest,Liberty,3,0.17556666666666668
+Washington,Alabama,4,-0.055400000000000046
+Washington,California,4,-0.20955000000000001
+Washington,North Carolina,4,-0.26375000000000004
+Washington,Ole Miss,3,0.0
+Washington,San Diego State,3,0.16893333333333335
+Washington,UCLA,3,0.4583
+Washington,Utah,4,-0.03875
+Washington State,Arizona State,4,-0.181875
+Washington State,Eastern Washington,3,-0.1724
+Washington State,Idaho,4,0.0
+Washington State,Miami,3,-0.020833333333333297
+Washington State,Wake Forest,8,-0.06672857142857143
+Weber State,BYU,5,0.14850000000000002
+Weber State,New Mexico,3,-0.07393333333333334
+Weber State,San José State,3,-0.12835000000000002
+West Virginia,Houston,4,-0.070825
+West Virginia,Nevada,3,-0.006666666666666668
+West Virginia,Southern Miss,5,-0.0020000000000000005
+West Virginia,Virginia Tech,4,-0.003333333333333334
+Western Kentucky,Auburn,3,-0.48625000000000007
+Western Kentucky,Gardner-Webb,3,-0.08173333333333332
+Western Kentucky,Western Kentucky,7,-0.32752857142857145
+Western Michigan,Gardner-Webb,3,-0.04666666666666667
+Western Michigan,Minnesota,3,-0.5387666666666667
+Wisconsin,Cincinnati,3,-0.12243333333333334
+Wisconsin,Illinois,3,-0.12416666666666669
+Wisconsin,Iowa State,3,0.0
+Wisconsin,Michigan State,5,-0.36314
+Wisconsin,Sam Houston,3,0.04520000000000001
+Wisconsin,UConn,3,0.16506666666666667
+Wyoming,Houston,3,-0.5149333333333334
+Wyoming,USC,3,-0.04249999999999998
+Youngstown State,UAB,3,-0.09499999999999999

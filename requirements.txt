@@ -1,0 +1,6 @@
+cfbd
+pandas
+requests
+dash
+plotly
+python-dotenv
