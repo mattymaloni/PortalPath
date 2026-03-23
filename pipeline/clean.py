@@ -172,15 +172,15 @@ def compute_success_delta(df_transfers):
 
 
 # ── Step 7: Build edge list ───────────────────────────────────────────────────
-def build_edges(df_transfers, df_scored, min_transfers=3):
+def build_edges(df_transfers, df_scored, min_transfers=2):
     """Aggregate transfers into a weighted edge list for the graph."""
     print("Building edge list...")
-    all_counts  = df_transfers.groupby(['origin', 'destination']).size().reset_index(name='transfer_count')
-    scored_delta = df_scored.groupby(['origin', 'destination']).agg(
+    all_counts  = df_transfers.groupby(['origin', 'destination','position']).size().reset_index(name='transfer_count')
+    scored_delta = df_scored.groupby(['origin', 'destination','position']).agg(
         avg_success_delta=('success_delta', 'mean')
     ).reset_index()
 
-    edges = all_counts.merge(scored_delta, on=['origin', 'destination'], how='inner')
+    edges = all_counts.merge(scored_delta, on=['origin', 'destination','position'], how='inner')
     edges = edges[edges['transfer_count'] >= min_transfers]
 
     edges.to_csv("data/processed/edges.csv", index=False)
