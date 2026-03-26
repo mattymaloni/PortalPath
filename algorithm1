@@ -1,0 +1,98 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+using namespace std;
+
+struct Edge {
+    string origin;
+    string destination;
+    int transfer_count;
+    double avg_success_delta;
+};
+
+struct SchoolProfile {
+    int incoming_count = 0; // players transferring into this school
+    int outgoing_count = 0; // players transferring out and leaving this school
+    double incoming_weighted_sum = 0.0; // success of these players that transferred in. positive for the program
+    double outgoing_weighted_sum = 0.0; // success of these players that transferred out. negative for the program
+    double incoming_score = 0.0; // average improvement of players that transferred in. takes weighted_sum/incoming_count
+    double outgoing_score = 0.0; // average improvement of players that left. same as above but for outgoing players
+    double net_ratio = 0.0; // measures if the school gained or lost more players, indicative of how valued this program is
+    double success_score = 0.0; // the final score where we will use weights of the above metrics to come up with final score
+};
+
+vector<Edge> loadEdges(const string& filename) {
+    vector<Edge> edges;
+    ifstream file(filename);
+    string line;
+
+    getline(file, line); // skip header
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string origin, destination, countStr, deltaStr;
+        getline(ss, origin, ',');
+        getline(ss, destination, ',');
+        getline(ss, countStr, ',');
+        getline(ss, deltaStr, ',');
+        if (origin == destination){
+          continue;
+        }
+        Edge e;
+        e.origin = origin;
+        e.destination = destination;
+        e.transfer_count = stoi(countStr);
+        e.avg_success_delta = stod(deltaStr);
+        edges.push_back(e);
+    }
+    return edges;
+}
+
+unordered_map<string, SchoolProfile> buildProfiles(const vector<Edge>& edges) {
+    unordered_map<string, SchoolProfile> profiles; // our map of each school and their stats
+    for (const Edge& e : edges) { // loop through edges
+        profiles[e.origin].outgoing_count += e.transfer_count; // collecting the outgoing measurements
+        profiles[e.origin].outgoing_weighted_sum += e.transfer_count * e.avg_success_delta;
+        profiles[e.destination].incoming_count += e.transfer_count; // collecting the incoming data
+        profiles[e.destination].incoming_weighted_sum += e.transfer_count * e.avg_success_delta; 
+    }
+    for (auto& entry : profiles) { // now loop through the profiles data we created 
+        SchoolProfile& p = entry.second; // the stats that we want to look at 
+        if (p.incoming_count > 0) { // figuring out the improvement of incoming players, if they exist
+            p.incoming_score = p.incoming_weighted_sum / p.incoming_count;
+        }
+        if (p.outgoing_count > 0) { // calculating improvement of players that transferred out, if any
+            p.outgoing_score = p.outgoing_weighted_sum / p.outgoing_count;
+        }
+        int total = p.incoming_count + p.outgoing_count;
+        if (total > 0) { // did the team have more players that transferred in or out, but this number has to be positive
+            p.net_ratio = double(p.incoming_count - p.outgoing_count) / total;
+        }
+
+        p.success_score =
+            0.5 * p.incoming_score // most important factor so it is weighted more. how much a player improves after they transfer in
+          - 0.3 * p.outgoing_score // second most significant, how much a player improves after leaving this school. negative because it is bad for this school's success
+          + 0.2 * p.net_ratio; // indicates if the school attracts more transfers, which usually means their program is stronger and desired by top players
+    }
+    return profiles;
+}
+
+bool compareTeams(const pair<string, double>& a,const pair<string, double>& b) {
+    return a.second > b.second;
+}
+
+vector<pair<string, double>> rankTeams(const unordered_map<string, SchoolProfile>& profiles) {
+    vector<pair<string, double>> rankings;
+    for (const auto& entry : profiles) {
+        const string& school = entry.first;
+        const SchoolProfile& p = entry.second;
+        rankings.push_back({school, p.success_score});
+    }
+    sort(rankings.begin(), rankings.end(),compareTeams);
+    return rankings;
+}
