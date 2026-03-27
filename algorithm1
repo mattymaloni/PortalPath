@@ -86,13 +86,19 @@ bool compareTeams(const pair<string, double>& a,const pair<string, double>& b) {
     return a.second > b.second;
 }
 
-vector<pair<string, double>> rankTeams(const unordered_map<string, SchoolProfile>& profiles) {
+vector<pair<string, double>> rankTeamsSort(
+    const unordered_map<string, SchoolProfile>& profiles,
+    int top_n = 10) {
     vector<pair<string, double>> rankings;
     for (const auto& entry : profiles) {
         const string& school = entry.first;
         const SchoolProfile& p = entry.second;
         rankings.push_back({school, p.success_score});
     }
-    sort(rankings.begin(), rankings.end(),compareTeams);
+
+    sort(rankings.begin(), rankings.end(), compareTeams);
+    if ((int)rankings.size() > top_n) {
+        rankings.resize(top_n);
+    }
     return rankings;
 }
