@@ -98,15 +98,6 @@ def _score_defender(r, pfx, sacks_w=1.0, coverage_w=1.0):
     coverage = coverage_w * ((pd_ / 8) + (ints / 3) + (int_td * 0.1))
     return ((0.35 * ppa) + (0.20 * usage) + (0.30 * havoc) + (0.15 * coverage)) * sack_rate_mult
 
-
-def _score_kicker(r, pfx):
-    fg_pct = _n(r.get(f'{pfx}kicking_FG_PCT'))
-    xp_pct = _n(r.get(f'{pfx}kicking_XP_PCT'))
-    pts    = _n(r.get(f'{pfx}kicking_PTS'))
-    long_  = _n(r.get(f'{pfx}kicking_LONG'))
-    return (0.40 * fg_pct) + (0.20 * xp_pct) + (0.25 * (pts / 80)) + (0.15 * (long_ / 55))
-
-
 def _score_punter(r, pfx):
     avg_  = _n(r.get(f'{pfx}punting_AVG'))
     in20  = _n(r.get(f'{pfx}punting_In 20'))
@@ -114,7 +105,12 @@ def _score_punter(r, pfx):
     tb    = _n(r.get(f'{pfx}punting_TB'))
     long_ = _n(r.get(f'{pfx}punting_LONG'))
     return (0.35 * (avg_ / 45)) + (0.30 * (in20 / max(no, 1))) + (0.20 * (long_ / 60)) - (0.15 * (tb / max(no, 1)))
-
+def _score_kicker(r, pfx):
+    fg_pct = _n(r.get(f'{pfx}kicking_FG_PCT'))
+    xp_pct = _n(r.get(f'{pfx}kicking_XP_PCT'))
+    pts    = _n(r.get(f'{pfx}kicking_PTS'))
+    long_  = _n(r.get(f'{pfx}kicking_LONG'))
+    return (0.40 * fg_pct) + (0.20 * xp_pct) + (0.25 * (pts / 80)) + (0.15 * (long_ / 55))
 
 def composite_score(position, r, pfx):
     pos = str(position).upper().strip()
