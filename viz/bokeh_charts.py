@@ -1,5 +1,5 @@
 """
-bokeh_charts.py — Interactive Bokeh visualizations for PortalPath
+bokeh_charts.py: Interactive Bokeh visualizations for PortalPath
 """
 import os
 import pandas as pd
@@ -202,7 +202,7 @@ def bokeh_scatter(year=None, conference=None):
             text_align=align, text_baseline=baseline,
         ))
 
-    p.xaxis.axis_label = 'Transfer Pipeline Quality (PageRank Score)'
+    p.xaxis.axis_label = 'PageRank: Network Prestige'
     p.yaxis.axis_label = 'Development Score  (player outcome quality)'
     return p
 
@@ -226,6 +226,7 @@ def _ranking_fig(df, label, value_col, title, x_label, top_n=25):
         y_range=Range1d(-0.5, n - 0.5),
         tools='hover',
     )
+    p.title.text_font_size = '10pt'
 
     p.hbar(y='y', right=value_col, height=0.65,
            color='color' if 'color' in df.columns else '#2563eb',
@@ -267,7 +268,7 @@ def bokeh_ranking(year=None, conference=None, top_n=25):
     return _ranking_fig(
         df, label,
         value_col='portal_index',
-        title=f'Top 25 — Portal Index {label}',
+        title=f'Top 25 — Portal Index (Algorithm 2 with Development Score) {label}',
         x_label='Portal Index',
         top_n=top_n,
     )
@@ -283,7 +284,126 @@ def bokeh_pagerank_ranking(year=None, conference=None, top_n=25):
     return _ranking_fig(
         df, label,
         value_col='pagerank',
-        title=f'Top 25 — Transfer Pipeline Quality {label}',
-        x_label='Transfer Pipeline Quality',
+        title=f'Top 25 — PageRank (Algorithm 2 without Development Score) {label}',
+        x_label='PageRank Score',
+        top_n=top_n,
+    )
+
+
+def bokeh_agreement_scatter(year=None, conference=None):
+    """Scatter comparing Portal Index rank vs Algorithm1 rank per school.
+    Diagonal = perfect agreement. Color = distance from diagonal."""
+    suffix = str(year) if year is not None else 'alltime'
+    label  = str(year) if year is not None else 'All-Time'
+
+    try:
+        a1 = pd.read_csv(os.path.join(_DATA_DIR, f'algorithm1_rankings_{suffix}.csv'))
+    except FileNotFoundError:
+        return _base_fig(width=900, height=580,
+                         title=f'Algorithm Agreement — {label}')
+
+    if year is None:
+        pi_path = os.path.join(_DATA_DIR, 'portal_index_alltime.csv')
+    else:
+        pi_path = os.path.join(_DATA_DIR, f'portal_index_{year}.csv')
+
+    try:
+        pi = pd.read_csv(pi_path)
+    except FileNotFoundError:
+        return _base_fig(width=900, height=580,
+                         title=f'Algorithm Agreement — {label}')
+
+    pi['pi_rank'] = pi['portal_index'].rank(ascending=False).astype(int)
+    a1['a1_rank'] = a1['success_score'].rank(ascending=False).astype(int)
+
+    df = pi[['school', 'pi_rank']].merge(
+        a1[['school', 'a1_rank']], on='school'
+    )
+
+    cm = _conf_map()
+    df['conference'] = df['school'].map(cm).fillna('Other')
+    if conference and conference != 'All':
+        df = df[df['conference'] == conference].copy()
+
+    if df.empty:
+        return _base_fig(width=900, height=580,
+                         title=f'Algorithm Agreement — {label}')
+
+    df['rank_diff'] = abs(df['pi_rank'] - df['a1_rank'])
+    max_diff = df['rank_diff'].max()
+
+    # Color by distance from diagonal
+    def diff_color(d):
+        if d <= 15:  return '#16a34a'   # green — agree
+        if d <= 40:  return '#d97706'   # amber — moderate divergence
+        return '#dc2626'                # red — strong divergence
+
+    df['color']      = df['rank_diff'].apply(diff_color)
+    df['logo_url']   = '/logos/' + df['school'] + '.png'
+    df['diff_label'] = df['rank_diff'].astype(str)
+
+    n = len(df)
+    p = _base_fig(
+        height=620, sizing_mode='stretch_both',
+        title=f'Algorithm Agreement — Portal Index vs Transfer Flow Score ({label})',
+        x_range=Range1d(n + 2, 0),
+        y_range=Range1d(n + 2, 0),
+        tools='pan,wheel_zoom,box_zoom,reset',
+    )
+
+    # Agreement diagonal
+    p.line([1, n], [1, n], line_color='#bbbbbb', line_dash='dashed',
+           line_width=1.2, legend_label='Perfect agreement')
+
+    source = ColumnDataSource(df)
+
+    p.scatter('pi_rank', 'a1_rank', source=source,
+              color='color', size=4, alpha=0.3)
+
+    p.image_url(url='logo_url', x='pi_rank', y='a1_rank',
+                w=36, h=36, source=source,
+                anchor='center', w_units='screen', h_units='screen')
+
+    hover = HoverTool(tooltips=[
+        ('School',              '@school'),
+        ('Portal Index Rank',   '@pi_rank'),
+        ('Flow Score Rank',     '@a1_rank'),
+        ('Rank Difference',     '@diff_label'),
+    ])
+    p.add_tools(hover)
+
+    p.xaxis.axis_label = 'Portal Index Rank'
+    p.yaxis.axis_label = 'Transfer Flow Score Rank'
+    p.legend.location  = 'top_left'
+    p.legend.label_text_font_size = '8pt'
+    return p
+
+
+def bokeh_algorithm1_ranking(year=None, conference=None, top_n=25):
+    suffix = str(year) if year is not None else 'alltime'
+    label  = str(year) if year is not None else 'All-Time'
+    path   = os.path.join(_DATA_DIR, f'algorithm1_rankings_{suffix}.csv')
+    df     = pd.read_csv(path)
+
+    cm = _conf_map()
+    df['conference'] = df['school'].map(cm).fillna('Other')
+
+    if conference and conference != 'All':
+        df = df[df['conference'] == conference].copy()
+
+    if df.empty:
+        return _base_fig(width=480, height=600,
+                         title=f'Transfer Flow Score ({label})')
+
+    # Normalize 0-1 for display
+    mn, mx = df['success_score'].min(), df['success_score'].max()
+    df['success_score'] = (df['success_score'] - mn) / (mx - mn + 1e-9)
+
+    df['color'] = '#7c3aed'
+    return _ranking_fig(
+        df, label,
+        value_col='success_score',
+        title=f'Top 25 — Transfer Flow Score (Algorithm 1) {label}',
+        x_label='Transfer Flow Score (normalized)',
         top_n=top_n,
     )

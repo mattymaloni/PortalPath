@@ -3,11 +3,13 @@ rank.py — PageRank and development score for transfer portal schools
 
   PageRank      — iterative prestige diffusion using pre_score weights
                   (how central is a school in the transfer network?)
+                  This is one of our "non-trivial" project algorithms
 
   Development   — success-factor-weighted avg post_score per destination
                   (do players actually produce after transferring here?)
 
   Portal Index  — 0.3 * PageRank + 0.7 * dev_score_norm
+                  this was validated through testing
 
 Usage:
     python pipeline/rank.py                  # PageRank
@@ -45,6 +47,7 @@ def build_graph(df, years):
     return graph
 
 
+#non-trivial alg for project
 def pagerank(graph, damping=0.85, max_iter=100, tol=1e-6):
     """
     Standard PageRank on a weighted directed graph.
@@ -223,6 +226,70 @@ def _validate(df, fbs_schools, index, test_year):
     r, p = spearmanr(merged['portal_index'], merged['post_score'])
     sig = "YES" if r > 0 and p < 0.05 else "WEAK/NO"
     print(f"  Validation {test_year}: r={r:.3f}  p={p:.4f}  n={len(merged)} transfers  → {sig}")
+
+
+def _export_edges(df, fbs_schools, sp, year=None):
+    """Aggregate one edge CSV for a given year (or all-time if year is None)."""
+    if year is not None:
+        df = df[df['year'] == year]
+        sp_yr = sp[sp['year'] == year]
+    else:
+        sp_yr = sp
+
+    # Conference SP+ multiplier — same approach as features.py validate_weights
+    # Applied to avg_success_delta after aggregation so a delta at a strong-conference
+    # school counts more than the same delta at a weak-conference school
+    conf_sp = sp_yr.groupby('conference')['sp_rating'].mean()
+    conf_sp_norm = (conf_sp - conf_sp.min()) / (conf_sp.max() - conf_sp.min() + 1e-9)
+    conf_multiplier = (0.75 + 0.40 * conf_sp_norm).to_dict()
+    team_conf = sp_yr.drop_duplicates('team').set_index('team')['conference'].to_dict()
+
+    df = df[
+        df['origin'].isin(fbs_schools) &
+        df['destination'].isin(fbs_schools) &
+        (df['origin'] != df['destination']) &
+        df['success_delta'].notna()
+    ].copy()
+
+    def weighted_delta(g):
+        w = g['success_factor']
+        return (g['success_delta'] * w).sum() / w.sum() if w.sum() > 0 else g['success_delta'].mean()
+
+    edges = (
+        df.groupby(['origin', 'destination'])
+        .apply(lambda g: pd.Series({
+            'transfer_count':    len(g),
+            'avg_success_delta': weighted_delta(g),
+            'avg_pre_score':     g['pre_score'].mean(),
+        }), include_groups=False)
+        .reset_index()
+    )
+
+    # Apply conference multiplier to destination after aggregation
+    edges['dest_conf_mult'] = (
+        edges['destination'].map(team_conf).map(conf_multiplier).fillna(0.65)
+    )
+    edges['avg_success_delta'] = edges['avg_success_delta'] * edges['dest_conf_mult']
+    edges = edges.drop(columns=['dest_conf_mult'])
+
+    suffix = str(year) if year is not None else 'alltime'
+    path = f"data/processed/edges_for_cpp_{suffix}.csv"
+    edges.to_csv(path, index=False)
+    print(f"  Saved {path} ({len(edges)} edges)")
+    return path
+
+
+def export_edges_for_cpp():
+    """Export all-time and per-year edge CSVs for algorithm1."""
+    df = pd.read_csv("data/processed/scored_transfers.csv", low_memory=False)
+    sp = pd.read_csv("data/raw/sp_ratings.csv")
+    fbs_schools = set(sp['team'].unique())
+    years = sorted(df['year'].unique())
+
+    print("Exporting edges for algorithm1...")
+    _export_edges(df, fbs_schools, sp, year=None)
+    for year in years:
+        _export_edges(df, fbs_schools, sp, year=year)
 
 
 def build_index(min_transfers=10):

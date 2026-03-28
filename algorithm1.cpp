@@ -13,6 +13,7 @@ struct Edge {
     string destination;
     int transfer_count;
     double avg_success_delta;
+    double avg_pre_score;
 };
 
 struct SchoolProfile {
@@ -35,11 +36,12 @@ vector<Edge> loadEdges(const string& filename) {
 
     while (getline(file, line)) {
         stringstream ss(line);
-        string origin, destination, countStr, deltaStr;
+        string origin, destination, countStr, deltaStr, preScoreStr;
         getline(ss, origin, ',');
         getline(ss, destination, ',');
         getline(ss, countStr, ',');
         getline(ss, deltaStr, ',');
+        getline(ss, preScoreStr, ',');
         if (origin == destination){
           continue;
         }
@@ -48,6 +50,7 @@ vector<Edge> loadEdges(const string& filename) {
         e.destination = destination;
         e.transfer_count = stoi(countStr);
         e.avg_success_delta = stod(deltaStr);
+        e.avg_pre_score = preScoreStr.empty() ? 0.0 : stod(preScoreStr);
         edges.push_back(e);
     }
     return edges;
@@ -56,10 +59,14 @@ vector<Edge> loadEdges(const string& filename) {
 unordered_map<string, SchoolProfile> buildProfiles(const vector<Edge>& edges) {
     unordered_map<string, SchoolProfile> profiles; // our map of each school and their stats
     for (const Edge& e : edges) { // loop through edges
-        profiles[e.origin].outgoing_count += e.transfer_count; // collecting the outgoing measurements
-        profiles[e.origin].outgoing_weighted_sum += e.transfer_count * e.avg_success_delta;
+        // Outgoing: only penalize if players improved after leaving (positive delta)
+        // — evidence the school was holding them back, not just normal roster churn
+        profiles[e.origin].outgoing_count += e.transfer_count;
+        if (e.avg_success_delta > 0) {
+            profiles[e.origin].outgoing_weighted_sum += e.transfer_count * e.avg_success_delta;
+        }
         profiles[e.destination].incoming_count += e.transfer_count; // collecting the incoming data
-        profiles[e.destination].incoming_weighted_sum += e.transfer_count * e.avg_success_delta; 
+        profiles[e.destination].incoming_weighted_sum += e.transfer_count * e.avg_success_delta;
     }
     for (auto& entry : profiles) { // now loop through the profiles data we created 
         SchoolProfile& p = entry.second; // the stats that we want to look at 
@@ -101,4 +108,44 @@ vector<pair<string, double>> rankTeamsSort(
         rankings.resize(top_n);
     }
     return rankings;
+}
+
+int main(int argc, char* argv[]) {
+    string input  = "data/processed/edges_for_cpp.csv";
+    string output = "data/processed/algorithm1_rankings.csv";
+
+    if (argc >= 2) input  = argv[1];
+    if (argc >= 3) output = argv[2];
+
+    vector<Edge> edges = loadEdges(input);
+    if (edges.empty()) {
+        cerr << "No edges loaded from " << input << endl;
+        return 1;
+    }
+
+    unordered_map<string, SchoolProfile> profiles = buildProfiles(edges);
+
+    // Write all schools to CSV for dashboard comparison
+    vector<pair<string, double>> all_schools;
+    for (const auto& entry : profiles) {
+        all_schools.push_back({entry.first, entry.second.success_score});
+    }
+    sort(all_schools.begin(), all_schools.end(), compareTeams);
+
+    ofstream out(output);
+    out << "rank,school,success_score,incoming_score,outgoing_score,net_ratio\n";
+    for (int i = 0; i < (int)all_schools.size(); i++) {
+        const string& school = all_schools[i].first;
+        const SchoolProfile& p = profiles[school];
+        out << (i + 1) << ","
+            << school << ","
+            << p.success_score << ","
+            << p.incoming_score << ","
+            << p.outgoing_score << ","
+            << p.net_ratio << "\n";
+    }
+    out.close();
+
+    cout << "Algorithm1 rankings saved to " << output << " (" << all_schools.size() << " schools)" << endl;
+    return 0;
 }

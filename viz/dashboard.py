@@ -15,7 +15,8 @@ from bokeh.embed import file_html
 from bokeh.resources import CDN
 
 from viz.bokeh_charts import (
-    bokeh_scatter, bokeh_ranking, bokeh_pagerank_ranking, get_conferences,
+    bokeh_scatter, bokeh_ranking, bokeh_pagerank_ranking,
+    bokeh_algorithm1_ranking, bokeh_agreement_scatter, get_conferences,
 )
 
 _LOGO_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logos')
@@ -63,6 +64,26 @@ def chart_pagerank():
     year, conf = _parse_args()
     try:
         plot = bokeh_pagerank_ranking(year=year, conference=conf)
+    except FileNotFoundError:
+        return _empty_html()
+    return file_html(plot, CDN)
+
+
+@app.server.route('/chart/algorithm1')
+def chart_algorithm1():
+    year, conf = _parse_args()
+    try:
+        plot = bokeh_algorithm1_ranking(year=year, conference=conf)
+    except FileNotFoundError:
+        return _empty_html()
+    return file_html(plot, CDN)
+
+
+@app.server.route('/chart/agreement')
+def chart_agreement():
+    year, conf = _parse_args()
+    try:
+        plot = bokeh_agreement_scatter(year=year, conference=conf)
     except FileNotFoundError:
         return _empty_html()
     return file_html(plot, CDN)
@@ -127,15 +148,25 @@ app.layout = html.Div([
         style={'padding': '0 8px'},
     ),
 
-    # Rankings — side by side, fixed height matching Bokeh figure
+    # Rankings — three columns: Portal Index | Transfer Flow | PageRank
     html.Div([
         html.Iframe(id='ranking-frame',
-                    style={**_IFRAME_BORDER, 'width': '49%', 'height': '880px',
+                    style={**_IFRAME_BORDER, 'width': '32%', 'height': '880px',
+                           'display': 'inline-block', 'verticalAlign': 'top'}),
+        html.Iframe(id='algorithm1-frame',
+                    style={**_IFRAME_BORDER, 'width': '32%', 'height': '880px',
                            'display': 'inline-block', 'verticalAlign': 'top'}),
         html.Iframe(id='pagerank-frame',
-                    style={**_IFRAME_BORDER, 'width': '49%', 'height': '880px',
+                    style={**_IFRAME_BORDER, 'width': '32%', 'height': '880px',
                            'display': 'inline-block', 'verticalAlign': 'top'}),
     ], id='rankings-div', style={'padding': '0 8px', 'marginTop': '12px'}),
+
+    # Agreement scatter — bottom
+    html.Div(
+        html.Iframe(id='agreement-frame',
+                    style={**_IFRAME_BORDER, 'width': '100%', 'height': '660px'}),
+        style={'padding': '0 8px', 'marginTop': '12px'},
+    ),
 
 ], style={'background': 'white', 'minHeight': '100vh'})
 
@@ -156,34 +187,38 @@ def quick_conf(*_):
 
 
 @app.callback(
-    Output('scatter-frame',  'src'),
-    Output('ranking-frame',  'src'),
-    Output('pagerank-frame', 'src'),
-    Output('scatter-div',    'style'),
-    Output('ranking-frame',  'style'),
+    Output('scatter-frame',    'src'),
+    Output('agreement-frame',  'src'),
+    Output('ranking-frame',    'src'),
+    Output('pagerank-frame',   'src'),
+    Output('algorithm1-frame', 'src'),
+    Output('scatter-div',      'style'),
+    Output('ranking-frame',    'style'),
     Input('year-select', 'value'),
     Input('conf-select', 'value'),
 )
 def update_charts(year_idx, conference):
-    year      = _YEARS[year_idx]
-    is_2026   = (year == 2026)
+    year       = _YEARS[year_idx]
+    is_2026    = (year == 2026)
     year_param = 'all' if year is None else str(year)
     conf_param = conference or 'All'
     base       = f'?year={year_param}&conf={conf_param}'
 
-    scatter_src  = f'/chart/scatter{base}'
-    ranking_src  = f'/chart/ranking{base}'
-    pagerank_src = f'/chart/pagerank{base}'
+    scatter_src    = f'/chart/scatter{base}'
+    agreement_src  = f'/chart/agreement{base}'
+    ranking_src    = f'/chart/ranking{base}'
+    pagerank_src   = f'/chart/pagerank{base}'
+    algorithm1_src = f'/chart/algorithm1{base}'
 
     if is_2026:
         scatter_style = {'display': 'none'}
         ranking_style = {'display': 'none'}
     else:
         scatter_style = {'padding': '0 16px'}
-        ranking_style = {**_IFRAME_BORDER, 'width': '49%', 'height': '880px',
+        ranking_style = {**_IFRAME_BORDER, 'width': '32%', 'height': '880px',
                          'display': 'inline-block', 'verticalAlign': 'top'}
 
-    return scatter_src, ranking_src, pagerank_src, scatter_style, ranking_style
+    return scatter_src, agreement_src, ranking_src, pagerank_src, algorithm1_src, scatter_style, ranking_style
 
 
 if __name__ == '__main__':

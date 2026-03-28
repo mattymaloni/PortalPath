@@ -1,11 +1,10 @@
-import math
-import pandas as pd
-from scipy.stats import spearmanr
-
 """
 How players success for a year is scored based on their stats
 Validate through testingn and comparing with PPA and "eye-check" (is 2025 Mendoza cobsidered at least top 3, etc)
 """
+import math
+import pandas as pd
+from scipy.stats import spearmanr
 
 
 def _n(val):
