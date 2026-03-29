@@ -2,6 +2,8 @@
 
 College football transfer portal analysis tool. Uses historical transfer data (2021–2025) to score and rank which programs best develop players surfaced through an interactive dashboard.
 
+**Live demo:** [portalpath.onrender.com](https://portalpath.onrender.com)
+
 **Team 90** — Matty Maloni, Toni Comer, Shawn Chen
 
 ---
