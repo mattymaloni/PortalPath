@@ -222,5 +222,6 @@ def update_charts(year_idx, conference):
 
 
 if __name__ == '__main__':
-    print('Starting PortalPath chart browser at http://localhost:8051')
-    app.run(debug=False, port=8051)
+    port = int(os.environ.get('PORT', 8051))
+    print(f'Starting PortalPath chart browser at http://localhost:{port}')
+    app.run(debug=False, host='0.0.0.0', port=port)
