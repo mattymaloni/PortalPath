@@ -74,7 +74,8 @@ def chart_algorithm1():
     year, conf = _parse_args()
     try:
         plot = bokeh_algorithm1_ranking(year=year, conference=conf)
-    except FileNotFoundError:
+    except Exception as e:
+        import traceback; traceback.print_exc()
         return _empty_html()
     return file_html(plot, CDN)
 
