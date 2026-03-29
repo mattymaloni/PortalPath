@@ -1,6 +1,9 @@
 cfbd
 pandas
 requests
+numpy
+scipy
 dash
 plotly
+bokeh
 python-dotenv
