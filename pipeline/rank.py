@@ -1,15 +1,15 @@
 """
 rank.py — PageRank and development score for transfer portal schools
 
-  PageRank      — iterative prestige diffusion using pre_score weights
-                  (how central is a school in the transfer network?)
+  PageRank      — scores schools based on how central they are in the transfer network
+                  uses pre_score as edge weights so higher-rated players matter more
                   This is one of our "non-trivial" project algorithms
 
-  Development   — success-factor-weighted avg post_score per destination
-                  (do players actually produce after transferring here?)
+  Development   — measures how much players actually improve after transferring in
+                  weighted by success_factor so reliable players count more
 
   Portal Index  — 0.3 * PageRank + 0.7 * dev_score_norm
-                  this was validated through testing
+                  weighting tested and validated
 
 Usage:
     python pipeline/rank.py                  # PageRank
@@ -24,8 +24,8 @@ import pandas as pd
 
 def build_graph(df, years):
     """
-    Build a weighted directed graph from transfer data.
-    Edge A -> B weight = avg(pre_score) * log(1 + count) for all transfers A->B in given years.
+    Builds the transfer graph from the data.
+    Edge weight = avg(pre_score) * log(1 + count) so high-rated players on popular routes get more weight.
     Returns adjacency dict: {origin: {destination: weight}}
     """
     df = df[df['year'].isin(years)].copy()
@@ -50,8 +50,8 @@ def build_graph(df, years):
 #non-trivial alg for project
 def pagerank(graph, damping=0.85, max_iter=100, tol=1e-6):
     """
-    Standard PageRank on a weighted directed graph.
-    Each node distributes its prestige to neighbors proportional to edge weight.
+    PageRank on the transfer graph.
+    Each school passes its score to schools it sends players to, weighted by edge weight.
     """
     nodes = set(graph.keys()) | {d for neighbors in graph.values() for d in neighbors}
     N = len(nodes)
@@ -98,16 +98,10 @@ _POSITION_WEIGHT = {
 
 def build_development_rate(df, years, min_transfers=10):
     """
-    For each destination school, compute the success-factor-weighted average
-    position-adjusted post_score of incoming transfers.
-
-    post_score is first converted to a within-position percentile (0-1) across
-    all transfers in the given years, then multiplied by a position importance
-    weight (QB=1.4 down to P=0.45) so cross-position comparisons are meaningful.
-
-    Answers: "do players actually produce after transferring here?"
-    Weighted by success_factor so Tier 1 players (reliable signal) count more
-    than Tier 3 players (never played anywhere).
+    For each destination school, computes how much incoming transfers actually produced.
+    post_score is converted to a within-position percentile then multiplied by a
+    position importance weight (QB=1.4 down to P=0.45).
+    Weighted by success_factor so players with reliable stats count more.
     """
     df = df[df['year'].isin(years)].copy()
     df = df[df['post_score'].notna() & df['success_factor'].notna()]

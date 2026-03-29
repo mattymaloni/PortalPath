@@ -108,8 +108,8 @@ The portal index combines two signals:
 - **Development Score** — success-factor-weighted average post-score per destination school, percentile-ranked within position and adjusted by position importance weight (QB=1.4, P=0.45). Captures whether players actually improve after transferring there.
 
 ### Transfer Flow Score (algorithm1.cpp)
-A C++ algorithm written by Toni Comer. Scores each school based on how much incoming transfers improve after arriving vs. how much outgoing transfers improve after leaving. Penalizes programs where players consistently improve only after leaving (evidence of being held back). Weighted by success factor and conference strength.
+A C++ algorithm. Scores each school based on how much incoming transfers improve after arriving vs. how much outgoing transfers improve after leaving. Penalizes programs where players consistently improve only after leaving (evidence of being held back). Weighted by success factor and conference strength.
 
 Formula: `0.5 * incoming_score - 0.3 * outgoing_score + 0.2 * net_ratio`
 
-The dashboard shows all three rankings side by side and an agreement scatter at the bottom — where the two algorithms agree there's high confidence, where they diverge is worth looking into.
+The dashboard shows all three rankings side by side and an agreement scatter at the bottom, where the two algorithms agree there's high confidence, where they diverge is worth looking into.

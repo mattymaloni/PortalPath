@@ -30,10 +30,9 @@ ATH_POS  = {'ATH', 'SPEC', 'WB', 'APB'}
 
 def _eff_mult(efficiency, baseline, scale=0.3):
     """
-    Fluid efficiency multiplier centered at 1.0.
-    efficiency / baseline > 1 means above average → boost
-    efficiency / baseline < 1 means below average → discount
-    scale controls how much efficiency moves the needle (default 30%)
+    Efficiency multiplier around 1.0.
+    Above baseline boosts the score, below baseline discounts it.
+    scale controls how much it moves (default 30%)
     """
     return 1.0 + scale * ((efficiency / max(baseline, 0.001)) - 1.0)
 
@@ -150,12 +149,11 @@ def compute_success_delta(df_transfers):
 
 def compute_success_factor(df_scored):
     """
-    Assign a success_factor (0-1) to each transfer row reflecting how reliable
-    that player's pre_score is as a signal.
+    Gives each transfer a success_factor (0-1) based on how reliable their pre_score is.
 
-    Tier 1 — player actually played before transferring (pre_score > 0)
-    Tier 2 — player has stats in an earlier season (possible injury year)
-    Tier 3 — player never had stats anywhere
+    Tier 1 — played before transferring, met volume thresholds
+    Tier 2 — has stats from an earlier season (may have been injured)
+    Tier 3 — no stats anywhere before transferring
     """
     print("Computing player success factors")
 
